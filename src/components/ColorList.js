@@ -69,6 +69,7 @@ const ColorList = ({ colors, updateColors }) => {
 					</li>
 				))}
 				{error && <Message message='User must be logged in to do that.' />}
+				{error && <a href='http://localhost:3000/login'>Click Here To Login</a>}
 			</ul>
 			{editing && (
 				<EditMenu
