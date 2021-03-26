@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
-import { axiosWithAuth } from '../helpers/axiosWithAuth';
 import EditMenu from './EditMenu';
 import Message from './Message';
+import { axiosAuthCall } from './utils/useApi';
 
 const initialColor = {
 	color: '',
@@ -22,33 +21,28 @@ const ColorList = ({ colors, updateColors }) => {
 	// Put request for saving colors
 	const saveEdit = (e) => {
 		e.preventDefault();
-		axiosWithAuth()
-			.put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
-			.then((res) => {
-				console.log([res.data]);
-				const newColors = colors.filter((color) => color.id !== colorToEdit.id);
 
-				updateColors([...newColors, res.data]);
-				setEditing(false);
-			})
-			.catch((err) => {
-				console.log(err);
-				setError(true);
-				setEditing(false);
-			});
+		axiosAuthCall(
+			'put',
+			`${colorToEdit.id}`,
+			updateColors,
+			colorToEdit,
+			colors,
+			setEditing,
+			setError
+		);
 	};
 
 	// Delete request for deleting colors.
 	const deleteColor = (color) => {
-		axiosWithAuth()
-			.delete(`http://localhost:5000/api/colors/${color.id}`, color)
-			.then((res) => {
-				updateColors(colors.filter((item) => item.id !== Number(res.data)));
-			})
-			.catch((err) => {
-				console.log(err);
-				setError(true);
-			});
+		axiosAuthCall(
+			'delete',
+			`${color.id}`,
+			updateColors,
+			color,
+			colors,
+			setError
+		);
 	};
 
 	return (
@@ -76,6 +70,7 @@ const ColorList = ({ colors, updateColors }) => {
 					</li>
 				))}
 				{error && <Message message='User must be logged in to do that.' />}
+				{error && <a href='http://localhost:3000/login'>Click Here To Login</a>}
 			</ul>
 			{editing && (
 				<EditMenu
