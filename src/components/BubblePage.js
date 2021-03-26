@@ -12,6 +12,7 @@ const BubblePage = () => {
 		axiosWithAuth()
 			.get('http://localhost:5000/api/colors')
 			.then((res) => {
+				// Set colorList to response data
 				setColorList(res.data);
 			})
 			.catch((err) => {
@@ -28,5 +29,3 @@ const BubblePage = () => {
 };
 
 export default BubblePage;
-
-//Task List:

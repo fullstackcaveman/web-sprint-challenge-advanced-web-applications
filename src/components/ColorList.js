@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../helpers/axiosWithAuth';
 import EditMenu from './EditMenu';
 
@@ -17,6 +16,7 @@ const ColorList = ({ colors, updateColors }) => {
 		setColorToEdit(color);
 	};
 
+	// Put request for saving colors
 	const saveEdit = (e) => {
 		e.preventDefault();
 		axiosWithAuth()
@@ -33,6 +33,7 @@ const ColorList = ({ colors, updateColors }) => {
 			});
 	};
 
+	// Delete request for deleting colors.
 	const deleteColor = (color) => {
 		axiosWithAuth()
 			.delete(`http://localhost:5000/api/colors/${color.id}`, color)
@@ -82,7 +83,3 @@ const ColorList = ({ colors, updateColors }) => {
 };
 
 export default ColorList;
-
-//Task List:
-//1. Complete the saveEdit functions by making a put request for saving colors. (Think about where will you get the id from...)
-//2. Complete the deleteColor functions by making a delete request for deleting colors.
