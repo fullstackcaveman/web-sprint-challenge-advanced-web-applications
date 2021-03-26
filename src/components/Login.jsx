@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// import { Link } from 'react-router-dom';
 import {
 	Avatar,
 	Button,
@@ -65,15 +64,6 @@ const Login = (props) => {
 		fontSize: '1rem',
 	};
 
-	// const newUserBtnStyle = {
-	// 	backgroundColor: 'transparent',
-
-	// 	color: 'grey',
-	// 	fontFamily: 'Impact, sans-serif',
-	// 	fontSize: '1rem',
-	// 	cursor: 'pointer',
-	// };
-
 	return (
 		<>
 			<Grid className='add-user'>
@@ -126,14 +116,6 @@ const Login = (props) => {
 							SIGN IN
 						</Button>
 					</form>
-					<Grid align='center'>
-						{/* <Link
-							to={}
-							style={newUserBtnStyle}
-						>
-							New User? Register
-						</Link> */}
-					</Grid>
 				</Paper>
 			</Grid>
 		</>

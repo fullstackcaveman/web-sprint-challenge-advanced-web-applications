@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import { axiosWithAuth } from '../helpers/axiosWithAuth';
 import EditMenu from './EditMenu';
+import Message from './Message';
 
 const initialColor = {
 	color: '',
@@ -10,6 +12,7 @@ const initialColor = {
 const ColorList = ({ colors, updateColors }) => {
 	const [editing, setEditing] = useState(false);
 	const [colorToEdit, setColorToEdit] = useState(initialColor);
+	const [error, setError] = useState(false);
 
 	const editColor = (color) => {
 		setEditing(true);
@@ -30,6 +33,8 @@ const ColorList = ({ colors, updateColors }) => {
 			})
 			.catch((err) => {
 				console.log(err);
+				setError(true);
+				setEditing(false);
 			});
 	};
 
@@ -42,6 +47,7 @@ const ColorList = ({ colors, updateColors }) => {
 			})
 			.catch((err) => {
 				console.log(err);
+				setError(true);
 			});
 	};
 
@@ -69,6 +75,7 @@ const ColorList = ({ colors, updateColors }) => {
 						/>
 					</li>
 				))}
+				{error && <Message message='User must be logged in to do that.' />}
 			</ul>
 			{editing && (
 				<EditMenu
@@ -76,6 +83,7 @@ const ColorList = ({ colors, updateColors }) => {
 					saveEdit={saveEdit}
 					setColorToEdit={setColorToEdit}
 					setEditing={setEditing}
+					error={error}
 				/>
 			)}
 		</div>

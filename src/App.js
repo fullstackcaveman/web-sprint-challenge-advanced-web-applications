@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 
 import Login from './components/Login';
@@ -11,22 +11,40 @@ const initialFormValues = {
 	password: '',
 };
 
+const initialLoggedIn = false;
+
 function App() {
 	const [formValues, setFormValues] = useState(initialFormValues);
+	const [isLoggedIn, setIsLoggedIn] = useState(initialLoggedIn);
 
 	const inputChange = (name, value) => {
 		setFormValues({ ...formValues, [name]: value });
 	};
 
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			setIsLoggedIn(true);
+		}
+	}, [isLoggedIn]);
+
 	return (
 		<Router>
 			<div className='App'>
 				<Route exact path='/'>
-					<Login values={formValues} change={inputChange} />
+					{isLoggedIn ? (
+						<Redirect to='/bubble-page' />
+					) : (
+						<Login values={formValues} change={inputChange} />
+					)}
 				</Route>
 				<Route exact path='/login'>
-					<Login values={formValues} change={inputChange} />
+					{isLoggedIn ? (
+						<Redirect to='/bubble-page' />
+					) : (
+						<Login values={formValues} change={inputChange} />
+					)}
 				</Route>
+				{/* Render BubblePage as a PrivateRoute */}
 				<PrivateRoute exact path='/bubble-page' component={BubblePage} />
 			</div>
 		</Router>
@@ -34,6 +52,3 @@ function App() {
 }
 
 export default App;
-
-//Task List:
-//1. Render BubblePage as a PrivateRoute
