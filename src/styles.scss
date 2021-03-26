@@ -60,29 +60,29 @@ body,
 	margin-right: 36px;
 }
 
-// form {
-// 	margin-top: 60px;
-// 	display: flex;
-// 	flex-direction: column;
+form {
+	margin-top: 60px;
+	display: flex;
+	flex-direction: column;
 
-// 	legend {
-// 		padding-left: 40px;
-// 		font-weight: bold;
-// 		text-align: left;
-// 		text-decoration: underline;
-// 		margin-bottom: 16px;
-// 	}
+	legend {
+		padding-left: 40px;
+		font-weight: bold;
+		text-align: left;
+		text-decoration: underline;
+		margin-bottom: 16px;
+	}
 
-// 	label {
-// 		display: flex;
-// 		justify-content: space-between;
-// 		padding: 4px 36px 4px 40px;
-// 	}
+	label {
+		display: flex;
+		justify-content: space-between;
+		padding: 4px 36px 4px 40px;
+	}
 
-// 	input {
-// 		width: 100px;
-// 	}
-// }
+	input {
+		width: 100px;
+	}
+}
 
 .button-row {
 	display: flex;
@@ -101,19 +101,19 @@ button {
 	color: red;
 }
 
-// .login-form {
-//   align-self: center;
-//   margin: 0 auto;
-//   border: 1px solid black;
-//   border-radius: 5px;
-//   padding: 36px;
+.login-form {
+	align-self: center;
+	margin: 0 auto;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 36px;
 
-//   form {
-//     margin-top: 0;
-//   }
+	form {
+		margin-top: 0;
+	}
 
-//   input {
-//     width: 200px;
-//     margin-left: 16px;
-//   }
-// }
+	input {
+		width: 200px;
+		margin-left: 16px;
+	}
+}
