@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import {
 	Avatar,
 	Button,
@@ -11,7 +11,6 @@ import {
 	Typography,
 } from '@material-ui/core';
 import Message from './Message';
-// import Loader from '../elements/Loader';
 
 const Login = (props) => {
 	const { values, change } = props;
@@ -23,30 +22,25 @@ const Login = (props) => {
 		change(name, valueToUse);
 	};
 
-	// make a post request to retrieve a token from the api
-	// when you have handled the token, navigate to the BubblePage route
-
 	const loginHandler = (e) => {
 		e.preventDefault();
 
-		console.log(values);
-
+		// make a post request to retrieve a token from the api
 		axios
 			.post('http://localhost:5000/api/login', values)
 			.then((res) => {
+				// If the username / password is equal to Lambda School / i<3Lambd4, save that token to localStorage.
 				localStorage.setItem('token', res.data.payload);
+				// when you have handled the token, navigate to the BubblePage route
 				window.location.href = '/bubble-page';
 			})
 			.catch((err) => {
+				// Directions - If either the username or password is not displaied display EXACTLY the following words: Username or Password not valid.
+				// Changed error response in handlers.js to match above
 				setError(err.response.data.error);
 				console.log(err.response.data.error);
 			});
 	};
-
-	useEffect(() => {
-		// make a post request to retrieve a token from the api
-		// when you have handled the token, navigate to the BubblePage route
-	});
 
 	const avatarStyle = { backgroundColor: '#ffee58', marginBottom: 10 };
 
@@ -71,14 +65,14 @@ const Login = (props) => {
 		fontSize: '1rem',
 	};
 
-	const newUserBtnStyle = {
-		backgroundColor: 'transparent',
+	// const newUserBtnStyle = {
+	// 	backgroundColor: 'transparent',
 
-		color: 'grey',
-		fontFamily: 'Impact, sans-serif',
-		fontSize: '1rem',
-		cursor: 'pointer',
-	};
+	// 	color: 'grey',
+	// 	fontFamily: 'Impact, sans-serif',
+	// 	fontSize: '1rem',
+	// 	cursor: 'pointer',
+	// };
 
 	return (
 		<>
@@ -91,10 +85,13 @@ const Login = (props) => {
 						</Typography>
 					</Grid>
 					{error && <Message message={error} />}
+
+					{/* 1. Build a form containing a username and password field. */}
+					{/* 3. MAKE SURE THAT FORM INPUTS INCLUDE THE LABEL TEXT "username" and "password" RESPECTIVELY. */}
 					<form onSubmit={loginHandler}>
 						<TextField
 							style={inputStyle}
-							label='Username'
+							label='username'
 							placeholder='Enter User Username'
 							variant='outlined'
 							size='small'
@@ -107,7 +104,7 @@ const Login = (props) => {
 
 						<TextField
 							style={inputStyle}
-							label='Password'
+							label='password'
 							placeholder='Enter Password'
 							variant='outlined'
 							size='small'
@@ -131,11 +128,7 @@ const Login = (props) => {
 					</form>
 					<Grid align='center'>
 						{/* <Link
-							to={
-								redirect
-									? `/users/register?redirect=${redirect}`
-									: '/users/register'
-							}
+							to={}
 							style={newUserBtnStyle}
 						>
 							New User? Register
@@ -148,15 +141,3 @@ const Login = (props) => {
 };
 
 export default Login;
-
-//Task List:
-//1. Build a form containing a username and password field.
-//2. Add whatever state nessiary for form functioning.
-//3. MAKE SURE THAT FORM INPUTS INCLUDE THE LABEL TEXT "username" and "password" RESPECTIVELY.
-//4. If either the username or password is not displaied display EXACTLY the following words: Username or Password not valid.
-//5. If the username / password is equal to Lambda School / i<3Lambd4, save that token to localStorage.
-
-// const submitHandler = (e) => {
-// 	e.preventDefault();
-// 	dispatch(login(email, password));
-// };
