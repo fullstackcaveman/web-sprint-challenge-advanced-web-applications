@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
 
 import Login from './components/Login';
 import './styles.scss';
+import BubblePage from './components/BubblePage';
 
 const initialFormValues = {
 	username: '',
@@ -22,6 +24,10 @@ function App() {
 				<Route exact path='/' component={Login}>
 					<Login values={formValues} change={inputChange} />
 				</Route>
+				<Route exact path='/login' component={Login}>
+					<Login values={formValues} change={inputChange} />
+				</Route>
+				<PrivateRoute exact path='/bubble-page' component={BubblePage} />
 			</div>
 		</Router>
 	);
