@@ -12,8 +12,6 @@ const ColorList = ({ colors, updateColors }) => {
 	const [editing, setEditing] = useState(false);
 	const [colorToEdit, setColorToEdit] = useState(initialColor);
 
-	const { push } = useHistory();
-
 	const editColor = (color) => {
 		setEditing(true);
 		setColorToEdit(color);
@@ -28,6 +26,7 @@ const ColorList = ({ colors, updateColors }) => {
 				const newColors = colors.filter((color) => color.id !== colorToEdit.id);
 
 				updateColors([...newColors, res.data]);
+				setEditing(false);
 			})
 			.catch((err) => {
 				console.log(err);
