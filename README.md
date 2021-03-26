@@ -55,7 +55,7 @@ Build a login form to authenticate your users.
 
 #### Testing
 
-- [ ] Finish the test in `BubblePage.test.js` to test that your app is fetching the bubble data from the API
+- [x] Finish the test in `BubblePage.test.js` to test that your app is fetching the bubble data from the API
 
 **Notes:**
 

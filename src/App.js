@@ -21,6 +21,9 @@ function App() {
 	return (
 		<Router>
 			<div className='App'>
+				<Route exact path='/'>
+					<Login values={formValues} change={inputChange} />
+				</Route>
 				<Route exact path='/login'>
 					<Login values={formValues} change={inputChange} />
 				</Route>
