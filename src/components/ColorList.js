@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { axiosWithAuth } from '../helpers/axiosWithAuth';
 import EditMenu from './EditMenu';
 import Message from './Message';
 import { axiosAuthCall } from './utils/useApi';
@@ -22,24 +21,27 @@ const ColorList = ({ colors, updateColors }) => {
 	// Put request for saving colors
 	const saveEdit = (e) => {
 		e.preventDefault();
-		axiosWithAuth()
-			.put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
-			.then((res) => {
-				const newColors = colors.filter((color) => color.id !== colorToEdit.id);
 
-				updateColors([...newColors, res.data]);
-				setEditing(false);
-			})
-			.catch((err) => {
-				console.log(err);
-				setError(true);
-				setEditing(false);
-			});
+		axiosAuthCall(
+			'put',
+			`${colorToEdit.id}`,
+			updateColors,
+			colorToEdit,
+			colors,
+			setEditing
+		);
 	};
 
 	// Delete request for deleting colors.
 	const deleteColor = (color) => {
-		axiosAuthCall('delete', `${color.id}`, updateColors, color, colors);
+		axiosAuthCall(
+			'delete',
+			`${color.id}`,
+			updateColors,
+			color,
+			colors,
+			setError
+		);
 	};
 
 	return (
