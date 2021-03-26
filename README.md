@@ -74,7 +74,7 @@ When completing these goals, make sure to use a **new branch** to ensure your MV
 These goals may or may not be things you have learned in this module but they build on the material you just studied:
 
 - [ ] Build out another form to add a new color to your color list
-- [ ] Build a custom hook called `useApi` that you can use to make all of your API calls
+- [x] Build a custom hook called `useApi` that you can use to make all of your API calls
 - [ ] Add more tests to give you further confidence in the code you're shipping
 
 ### Reference Materials

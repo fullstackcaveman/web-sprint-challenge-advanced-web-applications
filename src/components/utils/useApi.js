@@ -1,6 +1,15 @@
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 
-export const axiosAuthCall = (method, endPoint, cb, payload, array, cb2) => {
+export const axiosAuthCall = (
+	method,
+	endPoint,
+	cb,
+	payload,
+	array,
+	cb2,
+	cb3
+) => {
+	// GET method
 	if (method === 'get') {
 		axiosWithAuth()
 			.get(`http://localhost:5000/api/${endPoint}`)
@@ -10,6 +19,7 @@ export const axiosAuthCall = (method, endPoint, cb, payload, array, cb2) => {
 			.catch((err) => {
 				console.log(err);
 			});
+		// PUT method
 	} else if (method === 'put') {
 		axiosWithAuth()
 			.put(`http://localhost:5000/api/colors/${endPoint}`, payload)
@@ -20,7 +30,9 @@ export const axiosAuthCall = (method, endPoint, cb, payload, array, cb2) => {
 			})
 			.catch((err) => {
 				console.log(err);
+				cb3(true);
 			});
+		// DELETE METHOD
 	} else if (method === 'delete') {
 		axiosWithAuth()
 			.delete(`http://localhost:5000/api/colors/${endPoint}`, payload)

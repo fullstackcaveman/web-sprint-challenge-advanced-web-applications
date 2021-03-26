@@ -28,7 +28,8 @@ const ColorList = ({ colors, updateColors }) => {
 			updateColors,
 			colorToEdit,
 			colors,
-			setEditing
+			setEditing,
+			setError
 		);
 	};
 
